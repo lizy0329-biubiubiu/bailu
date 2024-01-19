@@ -1,26 +1,20 @@
 import {
   defineConfig,
-  presetUno,
   presetAttributify,
   presetTypography,
+  presetUno,
+  transformerAttributifyJsx,
+  transformerCompileClass,
   transformerDirectives,
   transformerVariantGroup,
-  transformerCompileClass,
-  transformerAttributifyJsx
-} from 'unocss';
+} from "unocss";
 
-export default defineConfig(
-  {
-      presets: [
-          presetUno(),
-          presetTypography(),
-          presetAttributify(),
-      ],
-      transformers: [
-          transformerCompileClass(),
-          transformerVariantGroup(),
-          transformerDirectives(),
-          transformerAttributifyJsx()
-      ]
-  }
-);
+export default defineConfig({
+  presets: [presetUno(), presetTypography(), presetAttributify()],
+  transformers: [
+    transformerCompileClass(),
+    transformerVariantGroup(),
+    transformerDirectives(),
+    transformerAttributifyJsx(),
+  ],
+});

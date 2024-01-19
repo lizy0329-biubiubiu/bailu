@@ -5,20 +5,23 @@
   "private": true,
   "packageManager": "pnpm@8.14.1",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "taze": "taze minor -wIr && pnpm -r --parallel run update-post",
-    "dev": "nr stub"
+    "dev": "nr stub",
+    "play": "pnpm -C playground run dev",
+    "format": "prettier --cache --ignore-path .eslintignore --write ./ ",
+    "lint": "eslint --cache .",
+    "lint:fix": "pnpm lint --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.3",
     "@types/node": "^20.11.5",
+    "prettier": "^3.2.4",
     "typescript": "^5.3.3"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx esno scripts/prepare.ts && npx lint-staged"
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,vue,md}": [
-      "eslint --cache --fix"
-    ]
+    "*": "eslint --cache --fix"
   }
 }
