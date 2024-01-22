@@ -1,27 +1,34 @@
 {
-    "name": "@bailu/monorepo",
-    "type": "module",
-    "version": "0.0.1",
-    "private": true,
-    "packageManager": "pnpm@8.14.1",
-    "scripts": {
-        "preinstall": "npx only-allow pnpm",
-        "taze": "taze minor -wIr && pnpm -r --parallel run update-post",
-        "dev": "nr stub",
-        "play": "pnpm -C playground run dev",
-        "format": "prettier --cache --ignore-path .eslintignore --write ./ "
-    },
-    "devDependencies": {
-        "@types/node": "^20.11.5",
-        "lint-staged": "^15.2.0",
-        "prettier": "^3.2.4",
-        "simple-git-hooks": "^2.9.0",
-        "typescript": "^5.3.3"
-    },
-    "simple-git-hooks": {
-        "pre-commit": "pnpm lint-staged"
-    },
-    "lint-staged": {
-        "*": "pnpm format"
-    }
+  "name": "@bailu/monorepo",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@8.14.1",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "taze": "taze minor -wIr && pnpm -r --parallel run update-post",
+    "dev": "nr stub",
+    "play": "pnpm -C playground run dev",
+    "prepare": "pnpm simple-git-hooks",
+    "lint": "eslint \"**/*.{js,ts,vue}\"",
+    "lint:fix": "eslint \"**/*.{js,ts,vue}\" --fix",
+    "format": "prettier --cache --write ./ "
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.6.3",
+    "@types/node": "^20.11.5",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-vue": "^9.20.1",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "simple-git-hooks": "^2.9.0",
+    "typescript": "^5.3.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "**/*": "pnpm format"
+  }
 }

@@ -1,7 +1,7 @@
 <template>
-    <div class="flex min-h-screen flex-col bg-background">
-        <Header />
-    </div>
+  <div class="flex min-h-screen flex-col bg-background">
+    <Header />
+  </div>
 </template>
 
 <script setup lang="ts">
