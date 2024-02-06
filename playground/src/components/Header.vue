@@ -21,32 +21,35 @@
         </Button> -->
 
         <div class="flex items-center gap-x-1">
-          <!-- <Button
-              v-for="link in links"
-              :key="link.name"
-              as="a"
-              :href="link.href" target="_blank"
-              :variant="'ghost'" :size="'icon'"
-            >
-              <component :is="link.icon" class="w-[20px] h-[20px]" />
-            </Button> -->
+          <Button
+            v-for="link in links"
+            as="a"
+            :href="link.href"
+            target="_blank"
+            class="flex items-center justify-center"
+            :aria-label="link.ariaLabel"
+            :variant="'ghost'"
+            :size="'icon'"
+          >
+            <div :class="link.icon" class="w-[20px] h-[20px]" />
+          </Button>
 
-          <button
-            class="i-radix-icons:sun dark:i-radix-icons:moon"
-            @click="toggleDark()"
-          />
-          <!-- <Button
-              class="flex items-center justify-center"
-              aria-label="Toggle dark mode"
-              :variant="'ghost'"
-              :size="'icon'"
+          <Button
+            class="flex items-center justify-center"
+            aria-label="Toggle dark mode"
+            :variant="'ghost'"
+            :size="'icon'"
+          >
+            <!-- <component
+              :is="isDark ? 'i-radix-icons-moon' : 'i-radix-icons-sun'"
+              class="w-[20px] h-[20px]"
               @click="toggleDark()"
-            >
-              <component
-                :is="isDark ? RadixIconsSun : RadixIconsMoon"
-                class="w-[20px] h-[20px] text-foreground"
-              />
-            </Button> -->
+            /> -->
+            <div
+              class="i-radix-icons:sun dark:i-radix-icons:moon !w-[20px] !h-[20px] text-foreground"
+              @click="toggleDark()"
+            />
+          </Button>
         </div>
       </div>
     </div>
@@ -54,11 +57,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+// import { ref } from 'vue';
 import { useDark, useToggle } from '@vueuse/core';
 import { Button } from '@/components/ui/button';
 
-const isOpen = ref(false);
+const links = [
+  {
+    name: 'GitHub',
+    href: 'https://github.com/radix-vue/shadcn-vue',
+    icon: 'i-radix-icons:github-logo',
+    ariaLabel: 'i-radix-icons:github-logo'
+  }
+];
+
+// const isOpen = ref(false);
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);

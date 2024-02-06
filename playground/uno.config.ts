@@ -3,6 +3,7 @@ import {
   presetAttributify,
   presetTypography,
   presetUno,
+  presetTagify,
   presetIcons,
   transformerAttributifyJsx,
   transformerCompileClass,
@@ -12,8 +13,19 @@ import {
 import { presetShadcn } from './preset.shadcn';
 
 export default defineConfig({
+  content: {
+    pipeline: {
+      include: [
+        // the default
+        /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+        // include js/ts files
+        'src/**/*.{js,ts}'
+      ]
+    }
+  },
   presets: [
     presetUno(),
+    presetTagify(),
     presetTypography(),
     presetAttributify(),
     presetShadcn(),
@@ -30,6 +42,5 @@ export default defineConfig({
       'flex-center': 'flex justify-center items-center',
       'flex-col-center': 'flex flex-col justify-center items-center'
     }
-  ],
-  include: [/\.ts/, /\.vue$/, /\.vue\?vue/]
+  ]
 });
